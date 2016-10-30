@@ -17,8 +17,7 @@ class FilePreview extends React.Component{
         filePreviewUrl: reader.result
       };
       thisReference.setState({
-        files: newFile.filePreviewUrl
-        // files: this.state.files.concat(newFile)
+        files: thisReference.state.files.concat(newFile)
       });
     };
     reader.readAsDataURL(file);
@@ -26,8 +25,8 @@ class FilePreview extends React.Component{
 
   render() {
     let filePreview = "";
-    if (this.state) {
-      filePreview = <img src={this.state.files} />;
+    if (this.state && this.state.files[0]) {
+      filePreview = <img src={this.state.files[0].filePreviewUrl} />;
     }
     return (
         <div>
