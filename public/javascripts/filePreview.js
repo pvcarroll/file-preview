@@ -10,12 +10,13 @@ class FilePreview extends React.Component{
   handleFileChange(e) {
     let reader = new FileReader();
     let file = e.target.files[0];
+    let thisReference = this;
     reader.onload = function() {
       let newFile = {
         file: file,
         filePreviewUrl: reader.result
       };
-      this.setState({
+      thisReference.setState({
         files: newFile.filePreviewUrl
         // files: this.state.files.concat(newFile)
       });
