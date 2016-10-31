@@ -1,8 +1,9 @@
 class FileWidget extends React.Component {
   render() {
+    let imagePath = "images/file_icons/" + this.props.fileExt + ".png";
     return (
         <div>
-          <img src="" className="fileIcon"/>
+          <img src={imagePath} className="fileIcon"/>
           <span className="fileName">{this.props.fileName}</span>
           <span className="fileType"></span>
         </div>
