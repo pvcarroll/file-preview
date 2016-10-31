@@ -9,8 +9,10 @@ class FileWidget extends React.Component {
     return (
         <div className="fileWidget">
           <img src={imagePath} className="fileIcon"/>
-          <span className="fileName">{this.props.fileName}</span>
-          <span className="fileType"></span>
+          <div className="textContainer">
+            <span className="fileName">{this.props.fileName}</span>
+            <span className="fileType"></span>
+          </div>
         </div>
     );
   }
