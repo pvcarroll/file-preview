@@ -16,6 +16,9 @@ class FilePreview extends React.Component {
                              type={this.props.file.type}></embed>;
     } else if (this.props.fileType.indexOf("image") === 0) {
       previewImage = <img src={this.props.filePreviewUrl} className="previewImage"/>;
+    } else {
+      let imagePath = "images/file_icons/" + this.props.fileExt + ".png";
+      previewImage = <img src={imagePath} className="previewImage"/>;
     }
     return (
         <div>
@@ -49,7 +52,8 @@ class FileWidget extends React.Component {
   filePreviewClicked() {
     ReactDOM.render(<FilePreview file={this.props.file}
                                  fileType={this.props.file.type}
-                                 filePreviewUrl={this.props.filePreviewUrl}/>,
+                                 filePreviewUrl={this.props.filePreviewUrl}
+                                 fileExt={this.props.fileExt}/>,
         document.getElementById("filePreviewContainer"));
   }
 
