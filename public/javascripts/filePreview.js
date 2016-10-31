@@ -1,8 +1,13 @@
 class FileWidget extends React.Component {
   render() {
-    let imagePath = "images/file_icons/" + this.props.fileExt + ".png";
+    let imagePath;
+    if (this.props.fileExt) {
+      imagePath = "images/file_icons/" + this.props.fileExt + ".png";
+    } else {
+      imagePath = "images/file_icons/_blank.png";
+    }
     return (
-        <div>
+        <div className="fileWidget">
           <img src={imagePath} className="fileIcon"/>
           <span className="fileName">{this.props.fileName}</span>
           <span className="fileType"></span>
@@ -26,7 +31,7 @@ class FilePreview extends React.Component {
     let fullFileName = e.target.value;
     let extIndex = fullFileName.lastIndexOf(".");
     let fileName = (extIndex !== -1) ? fullFileName.substring(0, extIndex) : fullFileName;
-    let fileExt = fullFileName.substring(extIndex + 1);
+    let fileExt = (extIndex !== -1) ? fullFileName.substring(extIndex + 1) : "";
     let thisReference = this;
     reader.onload = function() {
       let newFile = {
