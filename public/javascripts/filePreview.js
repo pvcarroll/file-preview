@@ -1,7 +1,14 @@
 class FilePreview extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    let previewImage = <img src={this.props.filePreviewUrl} className="previewImage"/>;
     return (
-        <div>FILE PREVIEW</div>
+        <div>
+          <div>{previewImage}</div>
+        </div>
     );
   }
 }
@@ -10,6 +17,7 @@ class FileWidget extends React.Component {
   constructor(props) {
     super(props);
     this.handleImageError = this.handleImageError.bind(this);
+    this.filePreviewClicked = this.filePreviewClicked.bind(this);
     let imagePath;
     if (this.props.fileExt) {
       imagePath = "images/file_icons/" + this.props.fileExt + ".png";
@@ -27,7 +35,8 @@ class FileWidget extends React.Component {
   }
 
   filePreviewClicked() {
-    ReactDOM.render(<FilePreview />, document.getElementById("filePreviewContainer"));
+    ReactDOM.render(<FilePreview filePreviewUrl={this.props.filePreviewUrl}/>,
+        document.getElementById("filePreviewContainer"));
   }
 
   render() {
