@@ -35,6 +35,10 @@ class FileWidget extends React.Component {
             <div className="fileType">{this.props.file.type}</div>
             <div className="fileSize">{size}</div>
           </div>
+          <div className="hoverPane">
+            <img src="images/eye.png" className="hoverImage eyeImage"/>
+            <img src="images/download.png" className="hoverImage downloadImage"/>
+          </div>
         </div>
     );
   }
