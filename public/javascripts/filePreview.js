@@ -1,3 +1,11 @@
+class FilePreview extends React.Component {
+  render() {
+    return (
+        <div>FILE PREVIEW</div>
+    );
+  }
+}
+
 class FileWidget extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +26,10 @@ class FileWidget extends React.Component {
     this.setState({fileIcon: "images/file_icons/_blank.png"});
   }
 
+  filePreviewClicked() {
+    ReactDOM.render(<FilePreview />, document.getElementById("filePreviewContainer"));
+  }
+
   render() {
     let size = parseInt(this.props.file.size);
     if (size < 1000) {
@@ -28,7 +40,7 @@ class FileWidget extends React.Component {
       size = (size / 1000000).toFixed(2) + "MB";
     }
     return (
-        <div className="fileWidget">
+        <div className="fileWidget" onClick={this.filePreviewClicked}>
           <img src={this.state.fileIcon} className="fileIcon" onError={this.handleImageError}/>
           <div className="textContainer">
             <div className="fileName">{this.props.fileName}</div>
@@ -44,7 +56,7 @@ class FileWidget extends React.Component {
   }
 }
 
-class FilePreview extends React.Component {
+class FilePreviewWidgets extends React.Component {
   constructor(props) {
     super(props);
     this.handleFileChange = this.handleFileChange.bind(this);
@@ -94,4 +106,4 @@ class FilePreview extends React.Component {
   }
 }
 
-ReactDOM.render(<FilePreview />, document.getElementById("filePreviewContainer"));
+ReactDOM.render(<FilePreviewWidgets />, document.getElementById("filePreviewWidgetsContainer"));
