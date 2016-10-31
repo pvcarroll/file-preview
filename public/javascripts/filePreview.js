@@ -1,14 +1,27 @@
 class FileWidget extends React.Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.handleImageError = this.handleImageError.bind(this);
     let imagePath;
     if (this.props.fileExt) {
       imagePath = "images/file_icons/" + this.props.fileExt + ".png";
     } else {
       imagePath = "images/file_icons/_blank.png";
     }
+    this.state = {
+      fileIcon: imagePath
+    };
+  }
+
+  handleImageError() {
+    this.onError = null;
+    this.setState({fileIcon: "images/file_icons/_blank.png"});
+  }
+
+  render() {
     return (
         <div className="fileWidget">
-          <img src={imagePath} className="fileIcon"/>
+          <img src={this.state.fileIcon} className="fileIcon" onError={this.handleImageError}/>
           <div className="textContainer">
             <div className="fileName">{this.props.fileName}</div>
             <div className="fileType">{this.props.file.type}</div>
