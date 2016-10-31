@@ -8,9 +8,6 @@ class FilePreview extends React.Component {
     if (this.props.fileType.indexOf("pdf") !== -1) {
       previewImage = <iframe src={this.props.filePreviewUrl}
                              className="previewImage previewPdf"></iframe>;
-    } else if (this.props.fileType.indexOf("html") !== -1) {
-      previewImage = <embed src={this.props.filePreviewUrl}
-                            className="previewImage previewHtml"></embed>;
     } else if (this.props.fileType.indexOf("text") === 0) {
       previewImage = <embed src={this.props.filePreviewUrl}
                              type={this.props.file.type}></embed>;
@@ -22,7 +19,7 @@ class FilePreview extends React.Component {
     }
     return (
         <div>
-          <div>{previewImage}</div>
+          {previewImage}
         </div>
     );
   }
