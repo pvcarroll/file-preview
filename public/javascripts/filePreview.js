@@ -115,7 +115,7 @@ class FilePreviewWidgets extends React.Component {
     let files = this.state.files;
     return (
         <div>
-          <input type="file" onChange={this.handleFileChange} />
+          <input type="file" onChange={this.handleFileChange} className="fileInput" />
           {
               files.map(function(file) {
                 return <FileWidget key={file.fileName}
