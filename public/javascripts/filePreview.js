@@ -10,8 +10,9 @@ class FileWidget extends React.Component {
         <div className="fileWidget">
           <img src={imagePath} className="fileIcon"/>
           <div className="textContainer">
-            <span className="fileName">{this.props.fileName}</span>
-            <span className="fileType"></span>
+            <div className="fileName">{this.props.fileName}</div>
+            <div className="fileType">{this.props.file.type}</div>
+            <div className="fileSize">{this.props.file.size}</div>
           </div>
         </div>
     );
@@ -30,7 +31,7 @@ class FilePreview extends React.Component {
   handleFileChange(e) {
     let reader = new FileReader();
     let file = e.target.files[0];
-    let fullFileName = e.target.value;
+    let fullFileName = file.name;
     let extIndex = fullFileName.lastIndexOf(".");
     let fileName = (extIndex !== -1) ? fullFileName.substring(0, extIndex) : fullFileName;
     let fileExt = (extIndex !== -1) ? fullFileName.substring(extIndex + 1) : "";
