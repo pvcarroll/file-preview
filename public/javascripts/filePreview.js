@@ -19,13 +19,21 @@ class FileWidget extends React.Component {
   }
 
   render() {
+    let size = parseInt(this.props.file.size);
+    if (size < 1000) {
+      size = size + "B";
+    } else if (size < 1000000) {
+      size = (size / 1000).toFixed(2) + "KB";
+    } else {
+      size = (size / 1000000).toFixed(2) + "MB";
+    }
     return (
         <div className="fileWidget">
           <img src={this.state.fileIcon} className="fileIcon" onError={this.handleImageError}/>
           <div className="textContainer">
             <div className="fileName">{this.props.fileName}</div>
             <div className="fileType">{this.props.file.type}</div>
-            <div className="fileSize">{this.props.file.size}</div>
+            <div className="fileSize">{size}</div>
           </div>
         </div>
     );
