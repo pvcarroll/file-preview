@@ -7,8 +7,14 @@ class FilePreview extends React.Component {
     let previewImage;
     if (this.props.fileType.indexOf("pdf") !== -1) {
       previewImage = <iframe src={this.props.filePreviewUrl}
-                             className="previewImage previewPdf"></iframe>
-    } else {
+                             className="previewImage previewPdf"></iframe>;
+    } else if (this.props.fileType.indexOf("html") !== -1) {
+      previewImage = <embed src={this.props.filePreviewUrl}
+                            className="previewImage previewHtml"></embed>;
+    } else if (this.props.fileType.indexOf("text") === 0) {
+      previewImage = <embed src={this.props.filePreviewUrl}
+                             type={this.props.file.type}></embed>;
+    } else if (this.props.fileType.indexOf("image") === 0) {
       previewImage = <img src={this.props.filePreviewUrl} className="previewImage"/>;
     }
     return (
@@ -41,7 +47,8 @@ class FileWidget extends React.Component {
   }
 
   filePreviewClicked() {
-    ReactDOM.render(<FilePreview fileType={this.props.file.type}
+    ReactDOM.render(<FilePreview file={this.props.file}
+                                 fileType={this.props.file.type}
                                  filePreviewUrl={this.props.filePreviewUrl}/>,
         document.getElementById("filePreviewContainer"));
   }
